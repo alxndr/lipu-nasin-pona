@@ -112,7 +112,6 @@ p[data-sitelen] {
   font: 2em/1.1 zh-FangZhengXiaoZhuanTi, zh-EBAS, zh-JinWen, cursive, fantasy;
   text-align: left;
   letter-spacing: -0.3em;
-  width: 5rem;
 }
 /* col 2: toki pona interpretation */
 .loseta td:nth-child(2) {
