@@ -8,6 +8,7 @@ interface Props {
 }
 
 const { chapterNum, title, status } = Astro.props
+const base = import.meta.env.BASE_URL  // e.g. '/lipu-nasin-pona' — no trailing slash
 const padded = (n: number) => String(n).padStart(2, '0')
 const prevChapter = chapterNum > 1 ? padded(chapterNum - 1) : null
 const nextChapter = chapterNum < 81 ? padded(chapterNum + 1) : null
@@ -24,17 +25,17 @@ const pageTitle = title
 </head>
 <body>
   <header class="site-header">
-    <a href="/">lipu Nasin Pona</a>
+    <a href={`${base}/`}>lipu Nasin Pona</a>
   </header>
 
   <nav class="kipisi-nav" aria-label="chapter navigation">
     {prevChapter
-      ? <a href={`/${prevChapter}/`} title={`kasi nanpa ${chapterNum - 1}`}>← {chapterNum - 1}</a>
+      ? <a href={`${base}/${prevChapter}/`} title={`kasi nanpa ${chapterNum - 1}`}>← {chapterNum - 1}</a>
       : <span aria-hidden="true" />
     }
-    <a href="/">kasi ale</a>
+    <a href={`${base}/`}>kasi ale</a>
     {nextChapter
-      ? <a href={`/${nextChapter}/`} title={`kasi nanpa ${chapterNum + 1}`}>{chapterNum + 1} →</a>
+      ? <a href={`${base}/${nextChapter}/`} title={`kasi nanpa ${chapterNum + 1}`}>{chapterNum + 1} →</a>
       : <span aria-hidden="true" />
     }
   </nav>
@@ -53,12 +54,12 @@ const pageTitle = title
 
   <nav class="kipisi-nav" aria-label="chapter navigation">
     {prevChapter
-      ? <a href={`/${prevChapter}/`} title={`kasi nanpa ${chapterNum - 1}`}>← {chapterNum - 1}</a>
+      ? <a href={`${base}/${prevChapter}/`} title={`kasi nanpa ${chapterNum - 1}`}>← {chapterNum - 1}</a>
       : <span aria-hidden="true" />
     }
-    <a href="/">kasi ale</a>
+    <a href={`${base}/`}>kasi ale</a>
     {nextChapter
-      ? <a href={`/${nextChapter}/`} title={`kasi nanpa ${chapterNum + 1}`}>{chapterNum + 1} →</a>
+      ? <a href={`${base}/${nextChapter}/`} title={`kasi nanpa ${chapterNum + 1}`}>{chapterNum + 1} →</a>
       : <span aria-hidden="true" />
     }
   </nav>
@@ -67,12 +68,12 @@ const pageTitle = title
     <small>
       <a href="https://github.com/alxndr/lipu-nasin-pona">lipu pali</a>
       {' · '}
-      <a href="/#acknowledgements">acknowledgements</a>
+      <a href={`${base}/#acknowledgements`}>acknowledgements</a>
     </small>
   </footer>
 
   <!-- sitelen sitelen renderer: finds <p data-sitelen="true"> elements and renders SVG -->
-  <script is:inline src="/sitelen-sitelen-renderer.min.js"></script>
+  <script is:inline src={`${base}/sitelen-sitelen-renderer.min.js`}></script>
   <script is:inline>
     document.addEventListener('DOMContentLoaded', function () {
       if (typeof sitelenRenderer !== 'undefined') {

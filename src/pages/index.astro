@@ -8,6 +8,7 @@ const lipuNasin = sorted.filter(c => c.data.chapter < 38)
 const lipuPona  = sorted.filter(c => c.data.chapter >= 38)
 
 const padded = (n: number) => String(n).padStart(2, '0')
+const base = import.meta.env.BASE_URL  // e.g. '/lipu-nasin-pona' — no trailing slash
 ---
 <!doctype html>
 <html lang="tp">
@@ -37,7 +38,7 @@ const padded = (n: number) => String(n).padStart(2, '0')
     <ol class="kasi-list">
       {lipuNasin.map(chapter => (
         <li class={chapter.data.status} value={chapter.data.chapter}>
-          <a href={`/${padded(chapter.data.chapter)}/`}>
+          <a href={`${base}/${padded(chapter.data.chapter)}/`}>
             {chapter.data.title ?? `kasi nanpa ${chapter.data.chapter}`}
           </a>
         </li>
