@@ -2,6 +2,8 @@
 
 An [Astro](https://astro.build/) static site for the Toki Pona interpretation of the Dao De Ching project.
 
+The Toki Pona interpretation has all been done by [jan Lesate](https://alxndr.blog) (@alxndr). The Astro implementation has been largely built by [ilo Claude 🤖](https://code.claude.com/docs/en/overview).
+
 Each of the 81 chapters lives as a Markdown file at the repo root (`01.md`–`81.md`).
 
 
