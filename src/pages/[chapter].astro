@@ -1,0 +1,19 @@
+---
+import { getCollection, render } from 'astro:content'
+import ChapterLayout from '../layouts/ChapterLayout.astro'
+
+export async function getStaticPaths() {
+  const chapters = await getCollection('chapters')
+  return chapters.map(entry => ({
+    params: { chapter: entry.id },
+    props: { entry },
+  }))
+}
+
+const { entry } = Astro.props
+const { Content } = await render(entry)
+const { chapter: chapterNum, title, status } = entry.data
+---
+<ChapterLayout chapterNum={chapterNum} title={title} status={status}>
+  <Content />
+</ChapterLayout>

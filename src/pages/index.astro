@@ -1,0 +1,123 @@
+---
+import { getCollection } from 'astro:content'
+import '../styles/global.css'
+
+const allChapters = await getCollection('chapters')
+const sorted = allChapters.sort((a, b) => a.data.chapter - b.data.chapter)
+const lipuNasin = sorted.filter(c => c.data.chapter < 38)
+const lipuPona  = sorted.filter(c => c.data.chapter >= 38)
+
+const padded = (n: number) => String(n).padStart(2, '0')
+---
+<!doctype html>
+<html lang="tp">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>lipu Nasin Pona</title>
+</head>
+<body>
+  <header class="site-header">
+    <h1>lipu Nasin Pona</h1>
+  </header>
+
+  <main>
+    <p>
+      A <a href="https://tokipona.org">Toki Pona</a> interpretation of the
+      <a href="https://en.wikipedia.org/wiki/Tao_Te_Ching">道德經 (Dao De Jing / Tao Te Ching)</a>,
+      started by jan Lesate (aka Alexander), 2023…
+    </p>
+    <p style="font-style: italic; font-size: 0.9em;">
+      Many have started, few have finished!{' '}
+      <a href="https://github.com/alxndr/lipu-nasin-pona">Please contribute</a> if you're so inclined!{' '}
+      Note that Toki Pona terms in italics are pending further consideration.
+    </p>
+
+    <h2>lipu Nasin</h2>
+    <ol class="kasi-list">
+      {lipuNasin.map(chapter => (
+        <li class={chapter.data.status} value={chapter.data.chapter}>
+          <a href={`/${padded(chapter.data.chapter)}/`}>
+            {chapter.data.title ?? `kasi nanpa ${chapter.data.chapter}`}
+          </a>
+        </li>
+      ))}
+    </ol>
+
+    <h2>lipu Pona</h2>
+    <ol class="kasi-list" start="38">
+      {lipuPona.map(chapter => (
+        <li class={chapter.data.status} value={chapter.data.chapter}>
+          <a href={`/${padded(chapter.data.chapter)}/`}>
+            {chapter.data.title ?? `kasi nanpa ${chapter.data.chapter}`}
+          </a>
+        </li>
+      ))}
+    </ol>
+
+    <h2>Notes</h2>
+    <ul>
+      <li>道 — nasin — Tao / Dao; "The Way"<sup><a href="#fn-muller">Muller</a></sup></li>
+      <li>德 — pona — Dé; goodness, virtuous; "Power"<sup><a href="#fn-minford">Minford</a></sup>; "Virtue"<sup><a href="#fn-muller">Muller</a></sup></li>
+      <li>天下 — ijo ale — "All-Under-Heaven"<sup><a href="#fn-minford">Minford</a></sup></li>
+      <li>圣人 — <em>o sina</em> / jan sewi — "The Sage"<sup><a href="#fn-muller">Muller</a></sup></li>
+      <li>sheng — mama — births (i.e. gives-birth-to)</li>
+      <li>玄 — nasa — mysterious, unknowable</li>
+      <li>争 — <em>wile</em> — "struggle"<sup><a href="#fn-muller">Muller</a></sup></li>
+      <li>处 — <em>awen</em> ? — "abide"<sup><a href="#fn-muller">Muller</a></sup></li>
+      <li>冬渉川 — tenpo ike la pali suli — a challenging endeavor, "crossing an ice-covered river"<sup><a href="#fn-muller">Muller</a></sup></li>
+      <li>神 — sewi — Shen; spirit(s), deity(ies), "power"<sup><a href="#fn-muller">Muller</a></sup></li>
+      <li>大顺 — …</li>
+      <li>善 — … <em>pona</em></li>
+      <li>利 — tenpo kama, pona</li>
+    </ul>
+    <p>
+      The original text makes frequent reference to a social context in which gender is prescribed to be strictly binary.
+      I have chosen not to retain this duality imposed on a spectrum of people; instead I use "jan" to refer to persons generally, and include "tonsi" when enumerating categorizations of people.
+    </p>
+
+    <h2 id="acknowledgements">Acknowledgements</h2>
+    <p>
+      I studied contemporary and classical Chinese at <a href="https://oberlin.edu">Oberlin College</a>; 谢谢老师们!
+    </p>
+    <p>
+      I have used <a href="https://ctext.org/dao-de-jing/ens">ctext.org</a> as the source for the text of the DaoDeJing.
+      I have used <a href="https://mdbg.net">mdbg.net</a> as a reference for individual characters.
+    </p>
+    <p>
+      I have used <a href="http://www.acmuller.net/con-dao/daodejing.html">A.C. Muller's interpretation</a> for the English shown here.
+      I am inspired by, and greatly informed by, <a href="https://johnminford.com/">John Minford</a>'s 2018{' '}
+      <a href="https://www.johnminford.com/books">interpretation of (and research about) the DaoDeJing</a>.
+      I have also referred to interpretations by Gia-Fu Feng (1972), Victor H. Mair (1990), Derek Lin (1994), J.H. McDonald (1996), and Agnieszka Solska (2005), as seen via{' '}
+      <a href="https://ttc.tasuki.org/display:Code:gff,vhm,dl,jhmd,as">Vít Brunner's Side By Side viewer</a>.
+    </p>
+    <p>
+      The <a href="https://tokipona.org">Toki Pona</a> language was created by jan Sonja.
+      My knowledge of it comes largely from the{' '}
+      <a href="https://discord.gg/Sw42hJ6Qc9">kama sona</a> and{' '}
+      <a href="https://discord.gg/mapona">ma pona pi toki pona</a> Discord communities.
+      I have used <a href="https://nimi.li">nimi.li</a> as a reference for Toki Pona words.
+    </p>
+    <p>
+      The <a href="https://en.wikipedia.org/wiki/Seal_script">seal script</a> Chinese font is{' '}
+      <a href="https://chinesefontdesign.com/fang-zheng-xiao-zhuan-ti-font-traditional-chinese.html">方正小篆体 FangZheng XiaoZhuanTi</a>.
+    </p>
+    <p>
+      The <a href="http://livingtokipona.smoishele.com/examples/liveinput/liveinput.html">Sitelen Sitelen Renderer</a> is by{' '}
+      <a href="https://github.com/olafjanssen">Olaf Janssen</a>.
+    </p>
+
+    <footer class="footnotes">
+      <ol>
+        <li id="fn-muller">
+          Muller, A Charles. "Daode Jing". 1991–2021; retrieved 2023.{' '}
+          <a href="http://www.acmuller.net/con-dao/daodejing.html">acmuller.net</a>
+        </li>
+        <li id="fn-minford">
+          Minford, John. "Tao Te Ching: The Tao and the Power". 2018; Viking / Penguin Random House.
+        </li>
+      </ol>
+    </footer>
+  </main>
+</body>
+</html>

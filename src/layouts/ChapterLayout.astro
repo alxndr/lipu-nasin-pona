@@ -1,0 +1,84 @@
+---
+import '../styles/global.css'
+
+interface Props {
+  chapterNum: number
+  title?: string
+  status: 'done' | 'wip' | 'ready' | 'notready'
+}
+
+const { chapterNum, title, status } = Astro.props
+const padded = (n: number) => String(n).padStart(2, '0')
+const prevChapter = chapterNum > 1 ? padded(chapterNum - 1) : null
+const nextChapter = chapterNum < 81 ? padded(chapterNum + 1) : null
+const pageTitle = title
+  ? `${title} (kasi nanpa ${chapterNum}) — lipu Nasin Pona`
+  : `kasi nanpa ${chapterNum} — lipu Nasin Pona`
+---
+<!doctype html>
+<html lang="tp">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{pageTitle}</title>
+</head>
+<body>
+  <header class="site-header">
+    <a href="/">lipu Nasin Pona</a>
+  </header>
+
+  <nav class="kipisi-nav" aria-label="chapter navigation">
+    {prevChapter
+      ? <a href={`/${prevChapter}/`} title={`kasi nanpa ${chapterNum - 1}`}>← {chapterNum - 1}</a>
+      : <span aria-hidden="true" />
+    }
+    <a href="/">kasi ale</a>
+    {nextChapter
+      ? <a href={`/${nextChapter}/`} title={`kasi nanpa ${chapterNum + 1}`}>{chapterNum + 1} →</a>
+      : <span aria-hidden="true" />
+    }
+  </nav>
+
+  <main>
+    <h1>
+      {title ?? `kasi nanpa ${chapterNum}`}
+      {status !== 'done' && <span class="chapter-status">{status}</span>}
+    </h1>
+    <p class="subheading" lang="en">
+      lipu {chapterNum < 38 ? 'Nasin' : 'Pona'} — kasi nanpa {chapterNum}
+    </p>
+
+    <slot />
+  </main>
+
+  <nav class="kipisi-nav" aria-label="chapter navigation">
+    {prevChapter
+      ? <a href={`/${prevChapter}/`} title={`kasi nanpa ${chapterNum - 1}`}>← {chapterNum - 1}</a>
+      : <span aria-hidden="true" />
+    }
+    <a href="/">kasi ale</a>
+    {nextChapter
+      ? <a href={`/${nextChapter}/`} title={`kasi nanpa ${chapterNum + 1}`}>{chapterNum + 1} →</a>
+      : <span aria-hidden="true" />
+    }
+  </nav>
+
+  <footer>
+    <small>
+      <a href="https://github.com/alxndr/lipu-nasin-pona">lipu pali</a>
+      {' · '}
+      <a href="/#acknowledgements">acknowledgements</a>
+    </small>
+  </footer>
+
+  <!-- sitelen sitelen renderer: finds <p data-sitelen="true"> elements and renders SVG -->
+  <script is:inline src="/sitelen-sitelen-renderer.min.js"></script>
+  <script is:inline>
+    document.addEventListener('DOMContentLoaded', function () {
+      if (typeof sitelenRenderer !== 'undefined') {
+        sitelenRenderer.init()
+      }
+    })
+  </script>
+</body>
+</html>

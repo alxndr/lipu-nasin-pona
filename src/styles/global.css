@@ -1,0 +1,144 @@
+/* Chinese fonts — used in .loseta tables for source text rendering */
+@font-face {
+  font-family: zh-EBAS;
+  src: url('/fonts/ebas927.ttf');
+  font-display: swap;
+}
+@font-face {
+  font-family: zh-FangZhengXiaoZhuanTi;
+  src: url('/fonts/fang-zheng-xiao-zhuan-ti.ttf');
+  font-display: swap;
+}
+@font-face {
+  font-family: zh-JinWen;
+  src: url('/fonts/jin-wen.ttf');
+  font-display: swap;
+}
+
+/* Reset & base */
+*, *::before, *::after { box-sizing: border-box; }
+html { font-size: 16px; }
+body {
+  font-family: system-ui, -apple-system, sans-serif;
+  line-height: 1.6;
+  max-width: 62rem;
+  margin: 0 auto;
+  padding: 1rem 1.5rem;
+  color: #1a1a1a;
+  background: #fff;
+}
+a { color: #0066cc; }
+a:visited { color: #5500aa; }
+h1, h2, h3 { line-height: 1.2; }
+
+/* Site header */
+.site-header {
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+.site-header a {
+  text-decoration: none;
+  color: inherit;
+  font-weight: 600;
+}
+
+/* Chapter navigation bar */
+.kipisi-nav {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-around;
+  max-width: 30rem;
+  margin: 2rem auto;
+  padding: 0.5rem;
+  box-shadow: 0 0 0.5rem 0.3rem rgba(99,99,99,0.15);
+  background: rgba(99,99,99,0.07);
+  border-radius: 2rem;
+  list-style: none;
+  gap: 0.5rem;
+}
+.kipisi-nav a {
+  flex: 1;
+  text-align: center;
+  padding: 0.25rem 0.5rem;
+  text-decoration: none;
+  border-radius: 1.5rem;
+}
+.kipisi-nav a:hover { background: rgba(99,99,99,0.15); }
+
+/* Status badge shown next to untranslated chapter titles */
+.chapter-status {
+  display: inline-block;
+  font-size: 0.7rem;
+  padding: 0.1em 0.4em;
+  border-radius: 0.25em;
+  background: #eee;
+  color: #555;
+  vertical-align: middle;
+  margin-left: 0.5em;
+}
+
+/* Sitelen sitelen SVG output — the renderer sets these attributes on <p> elements */
+p[data-sitelen] {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+[data-sitelen] > svg {
+  margin: 0;
+  padding: 0;
+  max-width: 100%;
+  max-height: 100vh;
+}
+
+/* Loseta comparison table: Chinese source | toki pona translation | English translation */
+.loseta {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+}
+.loseta tbody {
+  display: table;
+  width: 100%;
+}
+.loseta td {
+  padding: 0.2em 0.4em;
+  vertical-align: top;
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+}
+/* col 1: Chinese seal-script source text */
+.loseta td:nth-child(1) {
+  white-space: nowrap;
+  font: 2em/1.1 zh-FangZhengXiaoZhuanTi, zh-EBAS, zh-JinWen, cursive, fantasy;
+  text-align: left;
+  letter-spacing: -0.3em;
+  width: 5rem;
+}
+/* col 2: toki pona interpretation */
+.loseta td:nth-child(2) {
+  text-align: left;
+}
+/* col 3: English reference translation — hidden by default */
+.loseta td:nth-child(3) {
+  display: none;
+  text-align: left;
+  opacity: 0.6;
+  font-size: 0.9em;
+}
+
+/* Chapter list on the index page */
+.kasi-list {
+  list-style: none;
+  padding-left: 1em;
+  column-width: 9em;
+  margin: 0.5rem 0 1.5rem;
+}
+.kasi-list li { padding: 0.1em 0; }
+.kasi-list li a { margin-right: 0.5em; }
+.kasi-list .done a { font-weight: 600; }
+.kasi-list .wip { opacity: 0.85; }
+.kasi-list .wip a { font-style: italic; }
+.kasi-list .ready { opacity: 0.5; }
+.kasi-list .ready a { color: #888; text-decoration: none; }
+.kasi-list .notready { opacity: 0.4; }
+.kasi-list .notready a { color: #888; text-decoration: none; font-style: italic; }

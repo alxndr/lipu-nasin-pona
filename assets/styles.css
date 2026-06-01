@@ -1,0 +1,70 @@
+/* Fonts for lipu Nasin Pona
+ *
+ * Chinese fonts — used in .loseta tables for source text rendering
+ * Toki Pona fonts — used for sitelen pona display
+ *
+ * These were extracted from the blog's assets/css/main.scss when
+ * lipu-nasin-pona was separated into its own repo (2026-05-30).
+ */
+
+@font-face {
+  font-family: zh-EBAS;
+  src: url('/assets/fonts/ebas927.ttf');
+  line-height: 1.1em;
+}
+@font-face {
+  font-family: zh-FangZhengXiaoZhuanTi;
+  src: url('/assets/fonts/fang-zheng-xiao-zhuan-ti.ttf');
+  line-height: 1.1em;
+}
+@font-face {
+  font-family: zh-JinWen;
+  src: url('/assets/fonts/jin-wen.ttf');
+  line-height: 1.1em;
+}
+@font-face {
+  font-family: tp-FairfaxPonaHD;
+  src: url('https://raw.githubusercontent.com/kreativekorp/open-relay/4d7cfda/FairfaxHD/FairfaxPonaHD.ttf');
+  line-height: 1.1em;
+}
+@font-face {
+  font-family: tp-LinjaLipamanka;
+  src: url('https://lipamanka.gay/linjalipamanka-normal.otf') format('opentype');
+  line-height: 1.1em;
+}
+@font-face {
+  font-family: tp-LinjaPona;
+  src: url('https://raw.githubusercontent.com/janSame/linja-pona/master/linja-pona-4.9.otf') format('opentype');
+}
+@font-face {
+  font-family: tp-LinjaSuwi;
+  src: url('https://raw.githubusercontent.com/anna328p/linjasuwi/main/linjasuwi.otf');
+  line-height: 1.1em;
+}
+@font-face {
+  font-family: tp-NasinNanpa;
+  src: url('/assets/fonts/nasin-nanpa-3.1.0.otf') format('opentype');
+  line-height: 1.1em;
+}
+@font-face {
+  font-family: tp-SitelenPonaPona;
+  src: url('https://jackhumbert.github.io/sitelen-pona-pona/fonts/sitelen-pona-pona.otf');
+  font-weight: 400;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: "liga" 1;
+}
+@font-face {
+  font-family: 'sitelen pona pona';
+  src: url('https://jackhumbert.github.io/sitelen-pona-pona/fonts/sitelen-pona-pona.otf');
+  font-weight: 400;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: "liga" 1;
+}
+@font-face {
+  font-family: 'linja sike';
+  src: url('https://wyub.github.io/tokipona/linja-sike-5.otf');
+}
+
+[lang=tp] > a {
+  text-decoration: none;
+}
