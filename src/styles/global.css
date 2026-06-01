@@ -1,17 +1,17 @@
 /* Chinese fonts — used in .loseta tables for source text rendering */
 @font-face {
   font-family: zh-EBAS;
-  src: url('/fonts/ebas927.ttf');
+  src: url('../assets/fonts/ebas927.ttf');
   font-display: swap;
 }
 @font-face {
   font-family: zh-FangZhengXiaoZhuanTi;
-  src: url('/fonts/fang-zheng-xiao-zhuan-ti.ttf');
+  src: url('../assets/fonts/fang-zheng-xiao-zhuan-ti.ttf');
   font-display: swap;
 }
 @font-face {
   font-family: zh-JinWen;
-  src: url('/fonts/jin-wen.ttf');
+  src: url('../assets/fonts/jin-wen.ttf');
   font-display: swap;
 }
 
